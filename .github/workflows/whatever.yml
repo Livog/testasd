@@ -15,8 +15,8 @@ jobs:
         with:
           path: ./testdir
           key: ${{ github.sha }}
-        restore-keys: |
-            ${{ github.sha }}-
+          restore-keys: |
+            ${{ github.sha }}
 
   re_use_test_cache:
     runs-on: ubuntu-latest
@@ -29,8 +29,8 @@ jobs:
         with:
           path: ./testdir
           key: ${{ github.sha }}
-        restore-keys: |
-          ${{ github.sha }}-
+          restore-keys: |
+            ${{ github.sha }}
 
       - name: ls
         run: ls -lart
