@@ -1,0 +1,32 @@
+name: Build, deploy and test
+on: push
+
+jobs:
+  build_test_cache:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: make dir
+        run: mkdir testdir
+
+      - uses: actions/cache@v2
+        id: my-cache
+        with:
+          path: ./testdir
+          key: ${{ github.sha }}
+
+  re_use_test_cache:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: restore cache
+        uses: actions/cache@v2
+        id: my-cache
+        with:
+          path: ./testdir
+          key: ${{ github.sha }}
+
+      - name: ls
+        run: ls -lart
